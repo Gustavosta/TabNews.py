@@ -1,3 +1,5 @@
+from tabnews.utils import is_json_return
+
 import requests
 
 
@@ -12,8 +14,11 @@ class PrivateRequestMixin:
 
     def get(self, url, data=None):
         headers = self.get_headers()
-        return requests.get(url, headers=headers, json=data)
+        return is_json_return(requests.get(url, headers=headers, json=data))
 
     def post(self, url, data):
         headers = self.get_headers()
-        return requests.post(url, headers=headers, json=data)
+        return is_json_return(requests.post(url, headers=headers, json=data))
+
+
+

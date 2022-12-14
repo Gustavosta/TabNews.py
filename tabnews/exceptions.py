@@ -15,10 +15,10 @@ class LoginRequired(ClientError):
     
 
 class InvalidCredentials(ClientError):
-    def __init__(self, messag):
+    def __init__(self, message):
         ClientError.__init__(self, message)
 
 
 class InvalidTabnewsReturn(ClientError):
-    def __init__(self, messag):
+    def __init__(self, message):
         ClientError.__init__(self, message)

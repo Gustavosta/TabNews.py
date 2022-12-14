@@ -16,7 +16,6 @@ class LoginMixin:
             "email": self.email,
             "password": self.password,
         }
-        print(data)
 
         headers = {
             "Content-Type": "application/json",
@@ -67,3 +66,4 @@ class LoginMixin:
             
         except Exception as e:
             raise e
+
