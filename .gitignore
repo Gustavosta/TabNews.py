@@ -128,12 +128,12 @@ test/
 outputs/
 results/
 *.txt
-config.py
 *.pth
 model.*
 test*
 *.db
 *.png
 *.jpg
+
 
 
