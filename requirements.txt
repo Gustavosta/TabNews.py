@@ -1,4 +1,4 @@
-aiohttp # To make asynchronous requests
-regex # To string manipulation
+requests
+
 
 
