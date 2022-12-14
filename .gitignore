@@ -134,6 +134,6 @@ test*
 *.db
 *.png
 *.jpg
-
+*.json
 
 
