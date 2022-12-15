@@ -1,11 +1,9 @@
-from tabnews.utils import is_json_return
+from tabnews.utils import tabnews_return_validator
 
 import requests
 
 
 class PrivateRequestMixin:
-    session_id = None
-
     def get_headers(self):
         return {
             "Content-Type": "application/json",
@@ -14,11 +12,13 @@ class PrivateRequestMixin:
 
     def get(self, url, data=None):
         headers = self.get_headers()
-        return is_json_return(requests.get(url, headers=headers, json=data))
+        return tabnews_return_validator(requests.get(url, headers=headers, json=data))
 
     def post(self, url, data):
         headers = self.get_headers()
-        return is_json_return(requests.post(url, headers=headers, json=data))
-
-
+        return tabnews_return_validator(requests.post(url, headers=headers, json=data))
+    
+    def patch(self, url, data):
+        headers = self.get_headers()
+        return tabnews_return_validator(requests.patch(url, headers=headers, json=data))
 

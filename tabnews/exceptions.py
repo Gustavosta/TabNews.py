@@ -22,3 +22,18 @@ class InvalidCredentials(ClientError):
 class InvalidTabnewsReturn(ClientError):
     def __init__(self, message):
         ClientError.__init__(self, message)
+
+class BadTabnewsRequest(ClientError):
+    def __init__(self, message):
+        ClientError.__init__(self, message)
+
+class BadUrl(ClientError):
+    def __init__(self, message):
+        ClientError.__init__(self, message)
+
+class InsufficientTabcoins(ClientError):
+    def __init__(self, message):
+        ClientError.__init__(self, message)
+
+
+

@@ -6,12 +6,12 @@ class GetUserMixin:
         if username is None:
             url = Config.USER_DATA_URL
             response = self.get(url)
-            return response.json()
+            return response
         
         else:
             url = Config.USERS_DATA_URL+f'/{username}'
             response = self.get(url)
-            response = response.json()
+            response = response
 
             # These additional fields serve to match the fields of searching 
             # for a user with that of searching for the user himself, since 
