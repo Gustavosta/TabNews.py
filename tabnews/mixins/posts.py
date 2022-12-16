@@ -70,7 +70,8 @@ class PostMixin:
         }
         
         return self.patch(url, data)
-    
+
+
     def edit_post(self, username, slug, title, content, reference=None):
         url = Config.CONTENTS_URL+'/'+username+'/'+slug
         data = {

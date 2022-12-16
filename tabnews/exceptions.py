@@ -8,16 +8,13 @@ class ClientError(Exception):
         self.logger = logging.getLogger('TabNews')
         self.logger.error(f'\n{self.message}\n')
 
-
 class LoginRequired(ClientError):
     def __init__(self, message):
         ClientError.__init__(self, message)
     
-
 class InvalidCredentials(ClientError):
     def __init__(self, message):
         ClientError.__init__(self, message)
-
 
 class InvalidTabnewsReturn(ClientError):
     def __init__(self, message):
@@ -34,6 +31,4 @@ class BadUrl(ClientError):
 class InsufficientTabcoins(ClientError):
     def __init__(self, message):
         ClientError.__init__(self, message)
-
-
 

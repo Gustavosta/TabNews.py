@@ -1,5 +1,3 @@
-from tabnews.utils import url_validator
-from tabnews.exceptions import BadUrl
 from tabnews.config import Config
 
 
@@ -25,7 +23,6 @@ class CommentMixin:
         data = {
             'status': 'deleted'
         }
-        print(url)
         
         return self.patch(url, data)
     
@@ -38,8 +35,5 @@ class CommentMixin:
             'body': content,
             'status': 'published'
         }
-        print(url)
         
         self.patch(url, data)
-
-

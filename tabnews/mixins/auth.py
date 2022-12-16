@@ -23,6 +23,7 @@ class LoginMixin:
         if response.status_code == 200 or response.status_code == 201:
             self.session_id = response.json()["token"]
             self.logger.info("Logged in")
+            return self.get_user()
 
         else:
             try:
@@ -38,8 +39,10 @@ class LoginMixin:
 
             with open(path, 'r') as f:
                 config = json.load(f)
-                session_id = config.get('session_id')
-                return session_id
+                for session in config:
+                    if session['email'] == self.email:
+                        self.session_id = session['session_id']
+                        return self.session_id
 
         except json.decoder.JSONDecodeError:
             raise json.decoder.JSONDecodeError("Arquivo de configuração inválido, verifique se o arquivo está no formato JSON")
@@ -56,12 +59,29 @@ class LoginMixin:
             if self.config_path != path:
                 self.config_path = path
 
-            with open(path, 'w') as f:
-                config = {
-                    'session_id': self.session_id,
-                }
-                json.dump(config, f)
-            
+            user_not_saved = True
+            with open(path, 'r+') as f:
+                data = f.read()
+                if data == '':
+                    list_sessions = []
+                else:
+                    list_sessions = json.loads(data)
+                
+                for session in list_sessions:
+                    if session['email'] == self.email:
+                        user_not_saved = False
+                        session['session_id'] = session
+
+                if user_not_saved:
+                    list_sessions.append({
+                        'session_id': self.session_id,
+                        'email': self.email,
+                    })
+
+                f.seek(0)
+                json.dump(list_sessions, f, indent=4)
+                f.truncate()
+        
         except Exception as e:
             raise e
 
