@@ -20,5 +20,3 @@ class GetUserMixin:
             response['notifications'] = None
 
             return response
-
-

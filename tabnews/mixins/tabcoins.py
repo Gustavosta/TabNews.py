@@ -1,5 +1,5 @@
-from tabnews.config import Config
 from tabnews.exceptions import InsufficientTabcoins
+from tabnews.config import Config
 
 
 class TabcoinsMixin:

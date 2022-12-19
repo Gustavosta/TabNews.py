@@ -1,4 +1,4 @@
-import requests, json
+import requests, json, os
 
 from tabnews.exceptions import InvalidCredentials, LoginRequired
 from tabnews.config import Config
@@ -32,7 +32,7 @@ class LoginMixin:
                 raise InvalidCredentials("Credenciais inválidas ou ocorreu um erro no endpoint do TabNews")
 
 
-    def load_config(self, path='config.json'):
+    def load_config(self, use_preview_tabnews_host=False, path='config.json'):
         try:
             if self.config_path != path:
                 self.config_path = path
@@ -40,7 +40,10 @@ class LoginMixin:
             with open(path, 'r') as f:
                 config = json.load(f)
                 for session in config:
-                    if session['email'] == self.email:
+                    host = 'production'
+                    if use_preview_tabnews_host == True:
+                        host = 'preview'
+                    if session['email'] == self.email and session['host'] == host:
                         self.session_id = session['session_id']
                         return self.session_id
 
@@ -54,36 +57,41 @@ class LoginMixin:
             raise KeyError("Arquivo de configuração inválido")
 
 
-    def dump_config(self, path='config.json'):
-        try:
-            if self.config_path != path:
-                self.config_path = path
+    def dump_config(self, use_preview_tabnews_host=False, path='config.json'):
+        if self.config_path != path:
+            self.config_path = path
 
-            user_not_saved = True
-            with open(path, 'r+') as f:
-                data = f.read()
-                if data == '':
-                    list_sessions = []
-                else:
-                    list_sessions = json.loads(data)
+        user_not_saved = True
+        if not os.path.exists(path):
+            with open(path, 'w') as f:
+                pass
+            
+        with open(path, 'r+') as f:
+            host = 'production'
+            if use_preview_tabnews_host == True:
+                host = 'preview'
                 
-                for session in list_sessions:
-                    if session['email'] == self.email:
-                        user_not_saved = False
-                        session['session_id'] = session
+            data = f.read()
+            if data == '':
+                list_sessions = []
+            else:
+                list_sessions = json.loads(data)
+            
+            for session in list_sessions:
+                if session['email'] == self.email and session['host'] == host:
+                    user_not_saved = False
+                    session['session_id'] = session
 
-                if user_not_saved:
-                    list_sessions.append({
-                        'session_id': self.session_id,
-                        'email': self.email,
-                    })
+            if user_not_saved:
+                list_sessions.append({
+                    'session_id': self.session_id,
+                    'email': self.email,
+                    'host': host,
+                })
 
-                f.seek(0)
-                json.dump(list_sessions, f, indent=4)
-                f.truncate()
-        
-        except Exception as e:
-            raise e
-
-
+            f.seek(0)
+            
+            json.dump(list_sessions, f, indent=4)
+            f.truncate()
+    
 

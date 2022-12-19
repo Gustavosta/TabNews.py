@@ -32,3 +32,8 @@ class InsufficientTabcoins(ClientError):
     def __init__(self, message):
         ClientError.__init__(self, message)
 
+class PreviewHostError(ClientError):
+    def __init__(self, message):
+        ClientError.__init__(self, message)
+
+
