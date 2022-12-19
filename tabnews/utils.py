@@ -6,6 +6,14 @@ import json, re, requests
 
 
 def get_preview_url():
+    """
+    Get the preview URL on GitHub repository of the Tabnews.
+    
+    Returns:
+    --------
+        str: The preview URL of the Tabnews.
+    """
+    
     try:
         url = F'https://api.github.com/repos/{Config.TABNEWS_GITHUB_REPOSITORY}/deployments'
         response = requests.get(url).json()
@@ -32,17 +40,45 @@ def get_preview_url():
 
 
 def url_validator(url):
+    """
+    Validate the URL.
+    
+    Args:
+    -----
+        url (str): The URL to be validated.
+        
+    Returns:
+    --------
+        bool: True if the URL is valid, False otherwise.
+    """
+    
     regex = "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$"
     return True if re.search(regex, url) else False
 
 
 def dict_and_object(dictonary):
+    """
+    Convert a dict to a CleverDict object.
+    """
+    
     if type(dictonary) == dict:
         return CleverDict(dictonary)
     return dictonary
 
 
 def tabnews_return_validator(response):
+    """
+    Validate the return of the Tabnews API.
+    
+    Args:
+    -----
+        response (str | dict): The response of the Tabnews API.
+        
+    Returns:
+    --------
+        dict | object: The response of the Tabnews API.
+    """
+    
     try:
         if type(response) != str and type(response) != dict:
             response = response.text
@@ -55,5 +91,4 @@ def tabnews_return_validator(response):
 
     except ValueError:
         raise InvalidTabnewsReturn('O retorno da requisição não é um JSON válido, verifique o status de funcionamento do TabNews.')
-
 

@@ -3,6 +3,18 @@ from tabnews.config import Config
 
 class GetUserMixin:
     def get_user(self, username=None):
+        """
+        Get the user's data or the data of a specific user.
+        
+        Args:
+        -----
+            username (str): The username of the user to be searched for.
+            
+        Returns:
+        --------
+            dict | object: The user's data or the data of a specific user.
+        """
+        
         if username is None:
             url = Config.USER_DATA_URL
             response = self.get(url)

@@ -6,6 +6,14 @@ from tabnews.config import Config
 
 class LoginMixin:
     def login(self):
+        """
+        Login to the TabNews API.
+        
+        Returns:
+        --------
+            dict | object: The user's data.
+        """
+        
         if self.email is None or self.password is None:
             raise LoginRequired("É necessário informar o email e a senha do TabNews")
 
@@ -33,6 +41,19 @@ class LoginMixin:
 
 
     def load_config(self, use_preview_tabnews_host=False, path='config.json'):
+        """
+        Load the user's session id and configuration from a file.
+        
+        Args:
+        -----
+            use_preview_tabnews_host (bool): If True, the session id will be loaded from the preview tabnews host.
+            path (str): The path to the file.
+        
+        Returns:
+        --------
+            str: The user's session id.
+        """
+        
         try:
             if self.config_path != path:
                 self.config_path = path
@@ -58,6 +79,15 @@ class LoginMixin:
 
 
     def dump_config(self, use_preview_tabnews_host=False, path='config.json'):
+        """
+        Save the user's session id and configuration to a file.
+        
+        Args:
+        -----
+            use_preview_tabnews_host (bool): If True, the session id will be saved to the preview tabnews host.
+            path (str): The path to the file.
+        """
+        
         if self.config_path != path:
             self.config_path = path
 
@@ -93,5 +123,3 @@ class LoginMixin:
             
             json.dump(list_sessions, f, indent=4)
             f.truncate()
-    
-

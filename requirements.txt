@@ -1,4 +1,4 @@
-requests
-cleverdict
+requests     # Library for performing HTTP requests
+cleverdict   # Dictionary with case-insensitive keys
 
 

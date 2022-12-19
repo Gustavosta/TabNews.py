@@ -22,6 +22,10 @@ class Client(
     TabcoinsMixin,
     CommentMixin,
 ):
+    """
+    The TabNews client. 
+    """
+    
     def __init__(self, email=None, password=None, token=None, save_session=True, config_path='config.json', use_preview_tabnews_host=False, logger=DEFAULT_LOGGER):
         self.email = email or os.environ.get('TABNEWS_EMAIL')
         self.password = password or os.environ.get('TABNEWS_PASSWORD')

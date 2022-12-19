@@ -1,4 +1,8 @@
 class Config:
+    """
+    Class that contains the configuration of the API.
+    """
+    
     HOST = 'https://www.tabnews.com.br'
 
     LOGIN_URL = HOST+'/api/v1/sessions'

@@ -5,11 +5,37 @@ from tabnews.config import Config
 
 class PostMixin:
     def get_post(self, username, slug):
+        """
+        Get a specific content.
+        
+        Args:
+        -----
+            username (str): The username of the content's author.
+            slug (str): The slug of the content.
+            
+        Returns:
+        --------
+            dict | object: The content's data.
+        """
+        
         url = Config.CONTENTS_URL+'/'+username+'/'+slug
         return self.get(url)
 
 
     def list_posts_from_url(self, url, all_posts=False):
+        """
+        List the contents of a specific URL.
+        
+        Args:
+        -----
+            url (str): The URL to be searched for.
+            all_posts (bool): If True, all the contents of the URL will be returned.
+            
+        Returns:
+        --------
+            list: The contents of a specific URL.
+        """
+        
         posts = []
         page = 1
         while True:
@@ -29,26 +55,92 @@ class PostMixin:
 
 
     def get_posts_from_user(self, username, all_posts=False):
+        """
+        Get the contents of a specific user.
+        
+        Args:
+        -----
+            url (str): The URL to be searched for.
+            all_posts (bool): If True, all the contents of the URL will be returned.
+            
+        Returns:
+        --------
+            list: The contents of a specific URL.
+        """
+        
         url = Config.CONTENTS_URL+'/'+username
         return self.list_posts_from_url(url, all_posts)
     
 
     def get_relevant_posts(self, all_posts=False):
+        """
+        Get the relevant contents.
+        
+        Args:
+        -----
+            url (str): The URL to be searched for.
+            all_posts (bool): If True, all the contents of the URL will be returned.
+            
+        Returns:
+        --------
+            list: The contents of a specific URL.
+        """
+        
         url = Config.CONTENTS_URL+'?strategy=relevant'
         return self.list_posts_from_url(url, all_posts)	
     
 
     def get_new_posts(self, all_posts=False):
+        """
+        Get the new contents.
+        
+        Args:
+        -----
+            url (str): The URL to be searched for.
+            all_posts (bool): If True, all the contents of the URL will be returned.
+            
+        Returns:
+        --------
+            list: The contents of a specific URL.
+        """
+        
         url = Config.CONTENTS_URL+'?strategy=new'
         return self.list_posts_from_url(url, all_posts)
     
 
     def get_old_posts(self, all_posts=False):
+        """
+        Get the old contents.
+        
+        Args:
+        -----
+            url (str): The URL to be searched for.
+            all_posts (bool): If True, all the contents of the URL will be returned.
+            
+        Returns:
+        --------
+            list: The contents of a specific URL.
+        """
+        
         url = Config.CONTENTS_URL+'?strategy=old'
         return self.list_posts_from_url(url, all_posts)
 
 
     def publish_post(self, title, content, reference=None):
+        """
+        Publish a content.
+        
+        Args:
+        -----
+            title (str): The title of the content.
+            content (str): The content.
+            reference (str): The URL of the content's source.
+            
+        Returns:
+        --------
+            dict | object: The content's data.
+        """
+        
         data = {
             "title": title,
             'body': content,
@@ -63,7 +155,20 @@ class PostMixin:
         return self.post(Config.CONTENTS_URL, data)
 
 
-    def delete_post(self, username, slug):
+    def delete_post(self, slug):
+        """
+        Delete a content.
+        
+        Args:
+        -----
+            slug (str): The slug of the content.
+            
+        Returns:
+        --------
+            dict | object: The content's data.
+        """
+        
+        username = self.get_user().username
         url = Config.CONTENTS_URL+'/'+username+'/'+slug
         data = {
             'status': 'deleted'
@@ -73,6 +178,22 @@ class PostMixin:
 
 
     def edit_post(self, username, slug, title, content, reference=None):
+        """
+        Edit a content.
+        
+        Args:
+        -----
+            username (str): The username of the content's author.
+            slug (str): The slug of the content.
+            title (str): The title of the content.
+            content (str): The content.
+            reference (str): The URL of the content's source.
+        
+        Returns:
+        --------
+            dict | object: The content's data.
+        """
+        
         url = Config.CONTENTS_URL+'/'+username+'/'+slug
         data = {
             "title": title,
@@ -86,5 +207,3 @@ class PostMixin:
             data['source_url'] = reference
             
         return self.patch(url, data)
-
-    

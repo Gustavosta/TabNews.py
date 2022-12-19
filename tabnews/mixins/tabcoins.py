@@ -4,6 +4,20 @@ from tabnews.config import Config
 
 class TabcoinsMixin:
     def upvote(self, username, slug_or_parent_id, upvote_amount=1):
+        """
+        Upvote a content.
+        
+        Args:
+        -----
+            username (str): The username of the content's author.
+            slug_or_parent_id (str): The slug or parent_id of the content.
+            upvote_amount (int): The amount of upvotes to be given.
+        
+        Returns:
+        --------
+            dict | object: The content's data.
+        """
+        
         tabcoins_limit = self.get_user()['tabcoins']
         url = Config.CONTENTS_URL+'/'+username+'/'+slug_or_parent_id+'/tabcoins'
         data = {
@@ -20,6 +34,20 @@ class TabcoinsMixin:
             return result
 
     def downvote(self, username, slug_or_parent_id, downvote_amount=1):
+        """
+        Downvote a content.
+        
+        Args:
+        -----
+            username (str): The username of the content's author.
+            slug_or_parent_id (str): The slug or parent_id of the content.
+            upvote_amount (int): The amount of upvotes to be given.
+        
+        Returns:
+        --------
+            dict | object: The content's data.
+        """
+        
         tabcoins_limit = self.get_user()['tabcoins']
         url = Config.CONTENTS_URL+'/'+username+'/'+slug_or_parent_id+'/tabcoins'
         data = {
@@ -34,6 +62,3 @@ class TabcoinsMixin:
                 result = self.post(url, data)
 
             return result
-
-
-
