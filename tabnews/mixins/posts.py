@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from tabnews.utils import url_validator
 from tabnews.exceptions import BadUrl
 from tabnews.config import Config
@@ -207,3 +210,5 @@ class PostMixin:
             data['source_url'] = reference
             
         return self.patch(url, data)
+
+

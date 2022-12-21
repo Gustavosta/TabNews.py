@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from tabnews.utils import tabnews_return_validator
 
 import requests
@@ -68,3 +71,4 @@ class PrivateRequestMixin:
         
         headers = self.get_headers()
         return tabnews_return_validator(requests.patch(url, headers=headers, json=data))
+

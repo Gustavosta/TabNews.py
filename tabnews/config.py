@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 class Config:
     """
     Class that contains the configuration of the API.
@@ -11,4 +14,6 @@ class Config:
     USERS_DATA_URL = HOST+'/api/v1/users'
     
     TABNEWS_GITHUB_REPOSITORY = 'filipedeschamps/tabnews.com.br'
+
+
 

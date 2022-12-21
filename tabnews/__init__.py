@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from tabnews.mixins.auth import LoginMixin
 from tabnews.mixins.private import PrivateRequestMixin
 from tabnews.mixins.account import GetUserMixin
@@ -59,6 +62,3 @@ class Client(
         
         else:
             self.session_id = token
-
-
-

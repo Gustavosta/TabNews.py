@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from tabnews.config import Config
 
 
@@ -89,6 +92,3 @@ class CommentMixin:
         }
         
         self.patch(url, data)
-
-
-

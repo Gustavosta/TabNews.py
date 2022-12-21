@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from tabnews.exceptions import InvalidTabnewsReturn, BadTabnewsRequest, PreviewHostError
 from tabnews.config import Config
 
@@ -91,4 +94,6 @@ def tabnews_return_validator(response):
 
     except ValueError:
         raise InvalidTabnewsReturn('O retorno da requisição não é um JSON válido, verifique o status de funcionamento do TabNews.')
+
+
 

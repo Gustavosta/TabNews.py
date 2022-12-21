@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import logging
 
 
@@ -35,5 +38,3 @@ class InsufficientTabcoins(ClientError):
 class PreviewHostError(ClientError):
     def __init__(self, message):
         ClientError.__init__(self, message)
-
-

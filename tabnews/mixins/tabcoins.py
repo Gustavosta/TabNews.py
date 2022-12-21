@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from tabnews.exceptions import InsufficientTabcoins
 from tabnews.config import Config
 
@@ -62,3 +65,5 @@ class TabcoinsMixin:
                 result = self.post(url, data)
 
             return result
+
+

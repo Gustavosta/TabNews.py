@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import requests, json, os
 
 from tabnews.exceptions import InvalidCredentials, LoginRequired
@@ -123,3 +126,4 @@ class LoginMixin:
             
             json.dump(list_sessions, f, indent=4)
             f.truncate()
+

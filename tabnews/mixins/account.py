@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from tabnews.config import Config
 
 
@@ -32,3 +35,5 @@ class GetUserMixin:
             response['notifications'] = None
 
             return response
+
+
