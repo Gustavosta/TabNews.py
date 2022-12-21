@@ -1,15 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from mixins.auth import LoginMixin
-from mixins.private import PrivateRequestMixin
-from mixins.account import GetUserMixin
-from mixins.posts import PostMixin
-from mixins.comments import CommentMixin
-from mixins.tabcoins import TabcoinsMixin
+from tabnews.mixins.auth import LoginMixin
+from tabnews.mixins.private import PrivateRequestMixin
+from tabnews.mixins.account import GetUserMixin
+from tabnews.mixins.posts import PostMixin
+from tabnews.mixins.comments import CommentMixin
+from tabnews.mixins.tabcoins import TabcoinsMixin
 
-from utils import get_preview_url
-from config import Config
+from tabnews.utils import get_preview_url
+from tabnews.config import Config
 
 import logging, os
 
