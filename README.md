@@ -16,11 +16,11 @@
 </p>
 </div>
 
-<div id="about"><h2>💻 Sobre o projeto</h2><br</div>
+<div id="about"><h2>💻 Sobre o projeto</h2></div>
 
 Essa é uma biblioteca Python para consumir a API do [Tabnews](https://www.tabnews.com.br). Ela tem o proposito de facilitar e optimizar a integração de aplicações Python com o site do TabNews;
 
-<div id="install"><h2>📩 Como baixar a biblioteca?</h2><br</div>
+<div id="install"><h2>📩 Como baixar a biblioteca?</h2></div>
 
 Para instalar localmente a biblioteca em seu computador, você pode usar o [Pypi](https://pypi.org/), com o comando:
 
@@ -33,7 +33,7 @@ Ou instalar via git:
 pip install git+https://github.com/Gustavosta/TabNews.py
 ```
 
-<div id="examples"><h2>🔨 Exemplos de uso</h2><br</div>
+<div id="examples"><h2>🔨 Exemplos de uso</h2></div>
 
 Aqui vamos ver alguns exemplos de uso de como você pode usar a biblioteca para facilitar a comunicação com a API do Tabnews:
 
@@ -201,7 +201,7 @@ comment = client.delete_comment(
 </pre>
 </div>
 
-<div id="contribute"><h2>💛 Quer contribuir</h2><br</div>
+<div id="contribute"><h2>💛 Quer contribuir</h2></div>
 
 Caso queira contribuir, você pode criar uma issue documentando as alterações sugeridas antes de criar um pull request, linkar o PR à issue, preferencialmente utilizar nomes de branch com o seguinte padrao:
 
@@ -213,7 +213,7 @@ Utilizar os tipos [Feature|Hotfix|Update]
 
 Qualquer duvida ou sugestão, sinta-se a vontade para abrir uma nova issue, assim temos espaço para discutir as alterações/duvidas.
 
-<div id="license"><h2>📜 Licença</h2><br</div>
+<div id="license"><h2>📜 Licença</h2></div>
 
 [MIT License](/LICENSE)
 

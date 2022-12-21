@@ -7,12 +7,14 @@ import setuptools
 with open("README.md", "r", encoding="UTF-8") as fh:
     long_description = fh.read()
     
-with open("requirements.txt", "r", encoding="UTF-8") as fh:
-    requirements = fh.read().splitlines()
+requirements = [
+    "cleverdict",
+    "requests"
+]
 
 setuptools.setup(
     name="tabnews",
-    version="1.0.0",
+    version="1.0.1",
     author="Gustavo Santana",
     license='MIT',
     author_email="sowlfie@gmail.com",
@@ -31,4 +33,3 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
 )
-
