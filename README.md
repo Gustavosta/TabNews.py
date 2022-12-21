@@ -1,10 +1,27 @@
-# TabNews.py
+<div align="center">
+<img src="https://i.imgur.com/ir3vFwk.png" width=100px>
+<br>
+<h1>TabNews.py</h1>
 
-## 💻 Sobre o projeto
+![Python](https://img.shields.io/badge/python-v3.7+-blue.svg) ![OS](https://img.shields.io/badge/OS-linux%20%7C%20windows-blue??style=flat&logo=Linux&logoColor=b0c0c0&labelColor=363D44)
+<br>
+<i>Uma biblioteca massinha para um lugar massinha :)</i>
+<br>
+<p>
+<a href="#about">Sobre</a> •
+<a href="#install">Instalação</a> •
+<a href="#examples">Exemplos</a> •
+<a href="#contribute">Contribuir</a> •
+<a href="#license">Licença</a>
+</p>
+</div>
+<br>
+
+<div id="about"><br><h2>💻 Sobre o projeto</h2><br</div>
 
 Essa é uma biblioteca Python para consumir a API do [Tabnews](https://www.tabnews.com.br). Ela tem o proposito de facilitar e optimizar a integração de aplicações Python com o site do TabNews;
 
-## 📩 Como baixar a biblioteca?
+<div id="install"><br><h2>📩 Como baixar a biblioteca?</h2><br</div>
 
 Para instalar localmente a biblioteca em seu computador, você pode usar o [Pypi](https://pypi.org/), com o comando:
 
@@ -17,7 +34,7 @@ Ou instalar via git:
 pip install git+https://github.com/Gustavosta/TabNews.py
 ```
 
-## 🔨 Exemplos de uso
+<div id="examples"><br><h2>🔨 Exemplos de uso</h2><br</div>
 
 Aqui vamos ver alguns exemplos de uso de como você pode usar a biblioteca para facilitar a comunicação com a API do Tabnews:
 
@@ -147,7 +164,7 @@ comment = client.delete_comment(
 )
 ```
 
-## 💛 Quer contribuir:
+<div id="contribute"><br><h2>💛 Quer contribuir</h2><br</div>
 
 Caso queira contribuir, você pode criar uma issue documentando as alterações sugeridas antes de criar um pull request, linkar o PR à issue, preferencialmente utilizar nomes de branch com o seguinte padrao:
 
@@ -159,6 +176,9 @@ Utilizar os tipos [Feature|Hotfix|Update]
 
 Qualquer duvida ou sugestão, sinta-se a vontade para abrir uma nova issue, assim temos espaço para discutir as alterações/duvidas.
 
+<div id="license"><br><h2>📜 Licença</h2><br</div>
+
+[MIT License](/LICENSE)
 
 
 
