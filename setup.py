@@ -3,10 +3,9 @@
 
 import setuptools
 
-
 with open("README.md", "r", encoding="UTF-8") as fh:
     long_description = fh.read()
-    
+
 requirements = [
     "cleverdict",
     "requests"
@@ -14,7 +13,7 @@ requirements = [
 
 setuptools.setup(
     name="tabnews",
-    version="1.0.1",
+    version="1.1.0",
     author="Gustavo Santana",
     license='MIT',
     author_email="sowlfie@gmail.com",
