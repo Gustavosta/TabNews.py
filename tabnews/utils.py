@@ -29,7 +29,7 @@ def get_preview_url():
         id = (*(
             deployment['id']
             for deployment in response
-            if value[0][deployment['environment'].lower()]
+            if deployment['environment'].lower() in value[0]
         ),)[-1]
 
         if id is None:
@@ -39,8 +39,11 @@ def get_preview_url():
         response = requests.get(url).json()
 
         for status in response:
+            return status['target_url']
+            """
             if value[0][status['state']]:
                 return status['target_url']
+            """
 
     except PreviewHostError:
         print('Não foi possível obter o host do homologação do Tabnews.')

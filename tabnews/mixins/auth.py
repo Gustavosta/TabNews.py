@@ -70,14 +70,14 @@ class LoginMixin:
             if self.config_path != path:
                 self.config_path = path
 
-            value = check_EH(self.email, host)
             with open(path, 'r') as f:
                 config = load(f)
 
                 for session in config:
                     host = 'preview' if use_preview_tabnews_host else 'production'
+                    value = check_EH(self.email, host)
 
-                    if value[0][session['email']] and value[1][session['host']]:
+                    if value[0] == session['email'] and value[1] == session['host']:
                         return session['session_id']
 
         except decoder.JSONDecodeError:
