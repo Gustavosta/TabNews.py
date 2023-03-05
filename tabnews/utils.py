@@ -30,7 +30,7 @@ def get_preview_url():
             deployment['id']
             for deployment in response
             if deployment['environment'].lower() in value[0]
-        ),)[-1]
+        ),)[0]
 
         if id is None:
             raise ValueError('No deployment found')
