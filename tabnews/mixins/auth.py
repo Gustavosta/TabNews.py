@@ -119,7 +119,7 @@ class LoginMixin:
 
             value = check_EH(self.email, host)
             for session in list_sessions:
-                if value[0][session['email']] and value[1][session['host']]:
+                if value[0] == session['email'] and value[1] == session['host']:
                     user_not_saved = False
                     session['session_id'] = session
 

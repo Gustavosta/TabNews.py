@@ -49,7 +49,6 @@ def get_preview_url():
         print('Não foi possível obter o host do homologação do Tabnews.')
         raise
 
-
 def url_validator(url):
     """
     Validate the URL.
