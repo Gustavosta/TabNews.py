@@ -8,7 +8,8 @@ from tabnews.utils import url_validator
 
 class PostMixin:
     @staticmethod
-    def URL(s): return Config.CONTENTS_URL + f'?strategy={s}'
+    def URL(s):
+        return Config.CONTENTS_URL + f"?strategy={s}"
 
     def get_post(self, username, slug):
         """
@@ -24,7 +25,7 @@ class PostMixin:
             dict | object: The content's data.
         """
 
-        return self.get(Config.CONTENTS_URL + '/' + username + '/' + slug)
+        return self.get(Config.CONTENTS_URL + "/" + username + "/" + slug)
 
     def list_posts_from_url(self, url, all_posts=False):
         """
@@ -44,9 +45,9 @@ class PostMixin:
         page = 1
 
         while 1:
-            prefix = '&' if '?' in url else '?'
+            prefix = "&" if "?" in url else "?"
 
-            data = self.get(url+f'{prefix}page={page}')
+            data = self.get(url + f"{prefix}page={page}")
             if not data:
                 break
 
@@ -71,7 +72,7 @@ class PostMixin:
             list: The contents of a specific URL.
         """
 
-        return self.list_posts_from_url(Config.CONTENTS_URL + '/' + username, all_posts)
+        return self.list_posts_from_url(Config.CONTENTS_URL + "/" + username, all_posts)
 
     def get_relevant_posts(self, all_posts=False):
         """
@@ -87,7 +88,7 @@ class PostMixin:
             list: The contents of a specific URL.
         """
 
-        return self.list_posts_from_url(self.URL('relevant'), all_posts)
+        return self.list_posts_from_url(self.URL("relevant"), all_posts)
 
     def get_new_posts(self, all_posts=False):
         """
@@ -103,7 +104,7 @@ class PostMixin:
             list: The contents of a specific URL.
         """
 
-        return self.list_posts_from_url(self.URL('new'), all_posts)
+        return self.list_posts_from_url(self.URL("new"), all_posts)
 
     def get_old_posts(self, all_posts=False):
         """
@@ -119,7 +120,7 @@ class PostMixin:
             list: The contents of a specific URL.
         """
 
-        return self.list_posts_from_url(self.URL('old'), all_posts)
+        return self.list_posts_from_url(self.URL("old"), all_posts)
 
     def publish_post(self, title, content, reference=None):
         """
@@ -136,17 +137,14 @@ class PostMixin:
             dict | object: The content's data.
         """
 
-        data = {
-            "title": title,
-            'body': content,
-            'status': 'published'
-        }
+        data = {"title": title, "body": content, "status": "published"}
 
         if reference:
             if not url_validator(reference):
                 raise BadUrl(
-                    'A URL de referência fornecida para a postagem não é válida.')
-            data['source_url'] = reference
+                    "A URL de referência fornecida para a postagem não é válida."
+                )
+            data["source_url"] = reference
 
         return self.post(Config.CONTENTS_URL, data)
 
@@ -164,10 +162,8 @@ class PostMixin:
         """
 
         username = self.get_user().username
-        url = Config.CONTENTS_URL + '/' + username + '/' + slug
-        data = {
-            'status': 'deleted'
-        }
+        url = Config.CONTENTS_URL + "/" + username + "/" + slug
+        data = {"status": "deleted"}
 
         return self.patch(url, data)
 
@@ -188,17 +184,14 @@ class PostMixin:
             dict | object: The content's data.
         """
 
-        url = Config.CONTENTS_URL + '/' + username + '/' + slug
-        data = {
-            "title": title,
-            'body': content,
-            'status': 'published'
-        }
+        url = Config.CONTENTS_URL + "/" + username + "/" + slug
+        data = {"title": title, "body": content, "status": "published"}
 
         if reference:
             if not url_validator(reference):
                 raise BadUrl(
-                    'A URL de referência fornecida para a edição da postagem não é válida.')
-            data['source_url'] = reference
+                    "A URL de referência fornecida para a edição da postagem não é válida."
+                )
+            data["source_url"] = reference
 
         return self.patch(url, data)

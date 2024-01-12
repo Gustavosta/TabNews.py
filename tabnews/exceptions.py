@@ -8,8 +8,8 @@ class ClientError(Exception):
     def __init__(self, message):
         Exception.__init__(self)
         self.message = message
-        self.logger = getLogger('TabNews')
-        self.logger.error(f'\n{self.message}\n')
+        self.logger = getLogger("TabNews")
+        self.logger.error(f"\n{self.message}\n")
 
 
 class LoginRequired(ClientError):
@@ -45,5 +45,3 @@ class InsufficientTabcoins(ClientError):
 class PreviewHostError(ClientError):
     def __init__(self, message):
         ClientError.__init__(self, message)
-
-
