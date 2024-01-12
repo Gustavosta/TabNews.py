@@ -19,7 +19,9 @@ class CommentMixin:
             list: The comments of a specific content.
         """
 
-        return self.get(Config.CONTENTS_URL + '/' + username+'/' + slug + '/' + 'children')
+        return self.get(
+            Config.CONTENTS_URL + "/" + username + "/" + slug + "/" + "children"
+        )
 
     def publish_comment(self, parent_id, content):
         """
@@ -35,11 +37,7 @@ class CommentMixin:
             dict | object: The comment's data.
         """
 
-        data = {
-            'parent_id': parent_id,
-            'body': content,
-            'status': 'published'
-        }
+        data = {"parent_id": parent_id, "body": content, "status": "published"}
 
         return self.post(Config.CONTENTS_URL, data)
 
@@ -56,11 +54,9 @@ class CommentMixin:
             dict | object: The comment's data.
         """
 
-        username = self.get_user()['username']
-        url = Config.CONTENTS_URL + '/' + username + '/' + comment_slug
-        data = {
-            'status': 'deleted'
-        }
+        username = self.get_user()["username"]
+        url = Config.CONTENTS_URL + "/" + username + "/" + comment_slug
+        data = {"status": "deleted"}
 
         return self.patch(url, data)
 
@@ -79,16 +75,8 @@ class CommentMixin:
             dict | object: The comment's data.
         """
 
-        username = self.get_user()['username']
-        url = Config.CONTENTS_URL + '/' + username + '/' + comment_slug
-        data = {
-            'parent_id': parent_id,
-            'body': content,
-            'status': 'published'
-        }
+        username = self.get_user()["username"]
+        url = Config.CONTENTS_URL + "/" + username + "/" + comment_slug
+        data = {"parent_id": parent_id, "body": content, "status": "published"}
 
         self.patch(url, data)
-
-
-
-

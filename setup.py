@@ -6,16 +6,13 @@ import setuptools
 with open("README.md", "r", encoding="UTF-8") as fh:
     long_description = fh.read()
 
-requirements = [
-    "cleverdict",
-    "requests"
-]
+requirements = ["cleverdict", "requests"]
 
 setuptools.setup(
     name="tabnews",
     version="1.1.0",
     author="Gustavo Santana",
-    license='MIT',
+    license="MIT",
     author_email="sowlfie@gmail.com",
     description='Python library for communication via API to the website: "TabNews.com.br"',
     long_description=long_description,

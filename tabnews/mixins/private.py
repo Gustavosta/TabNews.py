@@ -7,7 +7,8 @@ from tabnews.utils import tabnews_return_validator
 
 
 class PrivateRequestMixin:
-    def __headers(self): return self.get_headers()
+    def __headers(self):
+        return self.get_headers()
 
     def get_headers(self):
         """
@@ -38,7 +39,8 @@ class PrivateRequestMixin:
         """
 
         return tabnews_return_validator(
-            requests.get(url, headers=self.__headers(), json=data))
+            requests.get(url, headers=self.__headers(), json=data)
+        )
 
     def post(self, url, data):
         """
@@ -55,7 +57,8 @@ class PrivateRequestMixin:
         """
 
         return tabnews_return_validator(
-            requests.post(url, headers=self.__headers(), json=data))
+            requests.post(url, headers=self.__headers(), json=data)
+        )
 
     def patch(self, url, data):
         """
@@ -72,8 +75,5 @@ class PrivateRequestMixin:
         """
 
         return tabnews_return_validator(
-            requests.patch(url, headers=self.__headers(), json=data))
-
-
-
-
+            requests.patch(url, headers=self.__headers(), json=data)
+        )

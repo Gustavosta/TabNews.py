@@ -14,8 +14,7 @@ from tabnews.mixins.private import PrivateRequestMixin
 from tabnews.mixins.tabcoins import TabcoinsMixin
 from tabnews.utils import get_preview_url
 
-
-DEFAULT_LOGGER = getLogger('TabNews')
+DEFAULT_LOGGER = getLogger("TabNews")
 
 
 class Client(
@@ -29,13 +28,17 @@ class Client(
     """The TabNews client."""
 
     def __init__(
-        self, email=None, password=None, token=None,
-        save_session=True, config_path='config.json',
-        use_preview_tabnews_host=False, logger=DEFAULT_LOGGER
+        self,
+        email=None,
+        password=None,
+        token=None,
+        save_session=True,
+        config_path="config.json",
+        use_preview_tabnews_host=False,
+        logger=DEFAULT_LOGGER,
     ) -> None:
-
-        self.email = email or environ.get('TABNEWS_EMAIL')
-        self.password = password or environ.get('TABNEWS_PASSWORD')
+        self.email = email or environ.get("TABNEWS_EMAIL")
+        self.password = password or environ.get("TABNEWS_PASSWORD")
         self.logger = logger
         self.config_path = config_path
 
@@ -56,12 +59,10 @@ class Client(
                 self.session_id = self.load_config(use_preview_tabnews_host)
 
                 if self.session_id is None:
-                    self.enter_session(
-                        use_preview_tabnews_host, 'Session loaded')
+                    self.enter_session(use_preview_tabnews_host, "Session loaded")
 
             else:
-                self.enter_session(
-                    use_preview_tabnews_host, 'Session saved')
+                self.enter_session(use_preview_tabnews_host, "Session saved")
 
         else:
             self.login()
@@ -70,5 +71,3 @@ class Client(
         self.login()
         self.dump_config(use_preview_tabnews_host)
         self.logger.info(info)
-
-
