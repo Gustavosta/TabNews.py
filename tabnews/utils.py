@@ -4,7 +4,7 @@
 from json import loads
 from re import search
 
-import requests
+import httpx
 from cleverdict import CleverDict
 
 from tabnews.config import Config
@@ -22,7 +22,7 @@ def get_preview_url():
 
     try:
         url = f"https://api.github.com/repos/{Config.TABNEWS_GITHUB_REPOSITORY}/deployments"
-        response = requests.get(url).json()
+        response = httpx.get(url).json()
         value = [{"preview": True}, {"success": True}]
 
         id = (
@@ -37,7 +37,7 @@ def get_preview_url():
             raise ValueError("No deployment found")
 
         url = f"https://api.github.com/repos/{Config.TABNEWS_GITHUB_REPOSITORY}/deployments/{id}/statuses"
-        response = requests.get(url).json()
+        response = httpx.get(url).json()
 
         for status in response:
             return status["target_url"]
@@ -47,8 +47,7 @@ def get_preview_url():
             """
 
     except PreviewHostError:
-        print("Não foi possível obter o host do homologação do Tabnews.")
-        raise
+        raise "Não foi possível obter o host do homologação do Tabnews."
 
 
 def url_validator(url):
@@ -65,7 +64,7 @@ def url_validator(url):
     """
 
     regex = "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$"
-    return True if search(regex, url) else False
+    return bool(search(regex, url))
 
 
 def dict_and_object(dictonary):

@@ -37,6 +37,8 @@ class Client(
         use_preview_tabnews_host=False,
         logger=DEFAULT_LOGGER,
     ) -> None:
+        super().__init__()
+
         self.email = email or environ.get("TABNEWS_EMAIL")
         self.password = password or environ.get("TABNEWS_PASSWORD")
         self.logger = logger

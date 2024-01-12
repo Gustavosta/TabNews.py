@@ -1,12 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import requests
+import httpx
 
 from tabnews.utils import tabnews_return_validator
 
 
 class PrivateRequestMixin:
+    def __init__(self) -> None:
+        self.__client = httpx.Client()
+
     def __headers(self):
         return self.get_headers()
 
@@ -24,7 +27,7 @@ class PrivateRequestMixin:
             "Cookie": f"session_id={self.session_id}",
         }
 
-    def get(self, url, data=None):
+    def get(self, url):
         """
         Make a GET request to the TabNews API.
 
@@ -39,7 +42,7 @@ class PrivateRequestMixin:
         """
 
         return tabnews_return_validator(
-            requests.get(url, headers=self.__headers(), json=data)
+            self.__client.get(url, headers=self.__headers())
         )
 
     def post(self, url, data):
@@ -57,7 +60,7 @@ class PrivateRequestMixin:
         """
 
         return tabnews_return_validator(
-            requests.post(url, headers=self.__headers(), json=data)
+            self.__client.post(url, headers=self.__headers(), json=data)
         )
 
     def patch(self, url, data):
@@ -75,5 +78,5 @@ class PrivateRequestMixin:
         """
 
         return tabnews_return_validator(
-            requests.patch(url, headers=self.__headers(), json=data)
+            self.__client.patch(url, headers=self.__headers(), json=data)
         )
