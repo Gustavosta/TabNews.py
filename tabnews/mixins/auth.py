@@ -4,8 +4,6 @@
 from json import decoder, dump, load, loads
 from os.path import exists
 
-from requests import post
-
 from tabnews.config import Config
 from tabnews.exceptions import InvalidCredentials, LoginRequired
 
@@ -37,7 +35,7 @@ class LoginMixin:
             "Content-Type": "application/json",
         }
 
-        response = post(url, json=data, headers=headers)
+        response = self.__client.post(url, json=data, headers=headers)
         if 200 <= response.status_code <= 201:
             self.session_id = response.json()["token"]
             self.logger.info("Logged in")

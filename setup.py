@@ -6,7 +6,7 @@ import setuptools
 with open("README.md", "r", encoding="UTF-8") as fh:
     long_description = fh.read()
 
-requirements = ["cleverdict", "requests"]
+requirements = ["cleverdict", "httpx"]
 
 setuptools.setup(
     name="tabnews",
