@@ -22,13 +22,12 @@ class GetUserMixin:
             url = Config.USER_DATA_URL
             return self.get(url)
 
-        url = Config.USERS_DATA_URL + f'/{username}'
+        url = Config.USERS_DATA_URL + f"/{username}"
 
         response = self.get(url)
         response = response
 
-        response['email'] = None
-        response['notifications'] = None
+        response["email"] = None
+        response["notifications"] = None
 
         return response
-

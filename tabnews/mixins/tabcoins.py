@@ -7,8 +7,10 @@ from tabnews.exceptions import InsufficientTabcoins
 
 class TabcoinsMixin:
     @staticmethod
-    def __URL(username, slug_or_parent_id): return Config.CONTENTS_URL + \
-        '/' + username + '/' + slug_or_parent_id + '/tabcoins'
+    def __URL(username, slug_or_parent_id):
+        return (
+            Config.CONTENTS_URL + "/" + username + "/" + slug_or_parent_id + "/tabcoins"
+        )
 
     def upvote(self, username, slug_or_parent_id, upvote_amount=1):
         """
@@ -25,11 +27,9 @@ class TabcoinsMixin:
             dict | object: The content's data.
         """
 
-        tabcoins_limit = self.get_user()['tabcoins']
+        tabcoins_limit = self.get_user()["tabcoins"]
         url = self.__URL(username, slug_or_parent_id)
-        data = {
-            "transaction_type": "credit"
-        }
+        data = {"transaction_type": "credit"}
 
         return self.result_check(upvote_amount, tabcoins_limit, url, data)
 
@@ -48,22 +48,20 @@ class TabcoinsMixin:
             dict | object: The content's data.
         """
 
-        tabcoins_limit = self.get_user()['tabcoins']
+        tabcoins_limit = self.get_user()["tabcoins"]
         url = self.__URL(username, slug_or_parent_id)
-        data = {
-            "transaction_type": "debit"
-        }
+        data = {"transaction_type": "debit"}
 
         return self.result_check(downvote_amount, tabcoins_limit, url, data)
 
     def result_check(self, _amount, tabcoins_limit, url, data) -> dict:
-        if _amount*2 > tabcoins_limit:
+        if _amount * 2 > tabcoins_limit:
             raise InsufficientTabcoins(
-                f'Você não possui tabcoins suficientes para realizar essa ação!\nVocê possui {tabcoins_limit} tabcoins, mas precisa de {_amount*2} para realizar essa ação.')
+                f"Você não possui tabcoins suficientes para realizar essa ação!\nVocê possui {tabcoins_limit} tabcoins, mas precisa de {_amount*2} para realizar essa ação."
+            )
 
-        result = {'tabcoins': None}
+        result = {"tabcoins": None}
         for i in range(_amount):
             result = self.post(url, data)
 
         return result
-
